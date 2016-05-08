@@ -1,5 +1,5 @@
 # RM-Note
 
-A public note application with Meteor 
+A public note application with Reactjs and Meteorjs.
 Login with google account and keep your notes. 
 #### Link : http://note.hasiptimurtas.com
