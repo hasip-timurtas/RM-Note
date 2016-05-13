@@ -18,8 +18,7 @@ export default class Nav extends Component{
                     </div>
                     <div id="navbar" className="navbar-collapse collapse">
                         <ul className="nav navbar-nav">
-                            <li><a href="/">Resolutions</a></li>
-                            <li><a href="/about">About</a></li>
+                            <li><a href="/new-note">New Note</a></li>
                         </ul>
                         <ul className="nav navbar-nav navbar-right">
                             <li><a href="#"> <AccountsUI /> </a></li>
