@@ -1,7 +1,7 @@
 import React from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 
-import SingleNoteForSearch from './SingleNoteForSearch.jsx';
+import SingleNote from './SingleNote.jsx';
 
 export default class SearchNote extends TrackerReact(React.Component) {
 
@@ -9,55 +9,41 @@ export default class SearchNote extends TrackerReact(React.Component) {
         super();
         this.state = {
             searchText: '',
-            datam :[]
+            datam: []
         }
     }
 
     UpdateSearch(event) {
         this.setState({
-            searchText: event.target.value.substr(0, 20)
-
+            searchText: event.target.value
         });
 
-        console.log(event.target.value);
-
-
+        this.loadNotesFromDB();
     }
 
+    loadNotesFromDB() {
+        var searchText = this.state.searchText;
 
-    searchResults() {
-        var ownerId = Meteor.userId();
-        var searchText = this.refs.searchText.value.trim();
         if (searchText) {
-
             var results = Notes.find({
-                    owner_id: ownerId,
-                    title: {$regex: searchText + "*"}
+                    ownerid: Meteor.userId(),
+                    title: {$regex: searchText + "*", $options: "i"}
                 }
             );
 
-            return results;
-            console.log(results);
+            this.setState({
+                datam: results
+            });
         }
-
-        console.log(searchText);
-
-    }
-
-    searchResults2() {
-        console.log("Hasip");
-        return Notes.find();
     }
 
     render() {
-        /*  let res = this.searchResults();
-         if (res.length < 1) {
-         return <div> Loading</div>
-         }*/
+        var notes = this.state.datam.map(note => {
+            return <SingleNote notem={note} key={note._id} />;
+        });
 
         return (
             <div>
-
 
                 <input type="text"
                        className="form-control searchNote"
@@ -65,18 +51,9 @@ export default class SearchNote extends TrackerReact(React.Component) {
                        placeholder="Search"
                        ref="searchText"
                        value={this.state.searchText}
-
                 />
 
-                <div className="list-group">
-                    <ul>
-                        {/*
-                         {this.searchResults().map(kc => {
-                         return <SingleNoteForSearch key={kc._id} note={kc}/>
-                         })}
-                         */}
-                    </ul>
-                </div>
+                    {notes}
             </div>
         )
     }

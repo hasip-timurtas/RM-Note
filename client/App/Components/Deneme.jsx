@@ -1,4 +1,28 @@
 import React from 'react';
+import TrackerReact from 'meteor/ultimatejs:tracker-react';
+
+export default class SendDataForSearch extends TrackerReact(React.Component){
+render(){
+    let tableData=[
+        {
+            name:'Paul Shan',
+            roll: '001'
+        },
+        {
+            name:'John Doe',
+            roll: '002'
+        },
+        {
+            name:'Sachin Tendulkar',
+            roll: '003'
+        }];
+
+    return (
+        <InstantBox data={tableData} hasip="MHT"/>
+    )
+
+}
+}
 
 export default class SearchBox extends React.Component {
     doSearch() {
@@ -37,7 +61,7 @@ export default class DisplayTable extends React.Component {
     }
 }
 
-export default class InstantBox extends React.Component {
+export default class InstantBox extends TrackerReact(React.Component) {
 
     constructor() {
         super();

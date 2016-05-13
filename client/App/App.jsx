@@ -2,45 +2,49 @@ import React from 'react';
 
 import RecentlyAdded from './Components/RecentlyAdded.jsx';
 import SearchNote from './Components/SearchNote.jsx';
-
-import InstantBox from './Components/Deneme.jsx';
+import ShowNote from './Components/ShowNote.jsx';
 
 Notes = new Meteor.Collection("notes");
 
 export default class App extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            selectedNote: {_id:null, text:'',content:''}
+        }
+    }
+
+    showNote(note)
+    {
+        console.log(note);
+        currentNote = {
+            _id : note.props.notem._id,
+            title : note.props.notem.title,
+            content: note.props.notem.content
+        };
+
+        this.setState({selectedNote: currentNote})
+    }
+
     render() {
-
-        let tableData=[
-            {
-                name:'Paul Shan',
-                roll: '001'
-            },
-            {
-                name:'John Doe',
-                roll: '002'
-            },
-            {
-                name:'Sachin Tendulkar',
-                roll: '003'
-            }];
-
-        console.log(tableData);
         return (
             <div className="row">
                 <div className="col-md-8">
-                    <SearchNote />
+                    <SearchNote selectedNote={this.state.selectedNote}/>
                     <hr/>
-                    {/* Edit Note Buraya Gelecek!!!*/}
+                    <ShowNote selectedNote={this.state.selectedNote} />
                 </div>
                 <div className="col-md-4">
-                    <RecentlyAdded />
+                    <RecentlyAdded selectedNote={this.state.selectedNote}
+                                   showNote={this.showNote.bind(this)}
+                    />
                 </div>
 
                 <div>
                     {Meteor.userId() ? "Login Oldu" : "Olmadıı"}
                 </div>
 
-                <InstantBox data={tableData} hasip="MHT"/>
+
             </div>
 
         )
