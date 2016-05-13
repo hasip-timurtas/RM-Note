@@ -8,7 +8,8 @@ export default class SearchNote extends TrackerReact(React.Component) {
     constructor() {
         super();
         this.state = {
-            searchText: ''
+            searchText: '',
+            datam :[]
         }
     }
 
@@ -17,6 +18,10 @@ export default class SearchNote extends TrackerReact(React.Component) {
             searchText: event.target.value.substr(0, 20)
 
         });
+
+        console.log(event.target.value);
+
+
     }
 
 
@@ -49,6 +54,7 @@ export default class SearchNote extends TrackerReact(React.Component) {
          if (res.length < 1) {
          return <div> Loading</div>
          }*/
+
         return (
             <div>
 
