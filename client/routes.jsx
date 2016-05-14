@@ -3,6 +3,7 @@ import {mount} from 'react-mounter';
 
 import {MainLayout} from './layouts/MainLayout.jsx';
 import App from './App/App.jsx';
+import NewNote from './App/Components/New-Note.jsx';
 
 FlowRouter.route('/', {
     action(){
@@ -15,7 +16,7 @@ FlowRouter.route('/', {
 FlowRouter.route('/new-note', {
     action(){
         mount(MainLayout, {
-            content: (<App />)
+            content: (<NewNote />)
         })
     }
 });

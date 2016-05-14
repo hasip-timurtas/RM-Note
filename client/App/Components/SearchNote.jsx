@@ -26,7 +26,7 @@ export default class SearchNote extends TrackerReact(React.Component) {
 
         if (searchText) {
             var results = Notes.find({
-                    ownerid: Meteor.userId(),
+                    owner_id: Meteor.userId(),
                     title: {$regex: searchText + "*", $options: "i"}
                 }
             );
@@ -39,7 +39,7 @@ export default class SearchNote extends TrackerReact(React.Component) {
 
     render() {
         var notes = this.state.datam.map(note => {
-            return <SingleNote notem={note} key={note._id} />;
+            return <SingleNote notem={note} key={note._id}/>;
         });
 
         return (
@@ -53,7 +53,7 @@ export default class SearchNote extends TrackerReact(React.Component) {
                        value={this.state.searchText}
                 />
 
-                    {notes}
+                {notes}
             </div>
         )
     }

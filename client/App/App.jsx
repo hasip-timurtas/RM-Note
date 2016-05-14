@@ -10,20 +10,13 @@ export default class App extends React.Component {
     constructor() {
         super();
         this.state = {
-            selectedNote: {_id:null, text:'',content:''}
+            selectedNote: []
         }
     }
 
     showNote(note)
     {
-        console.log(note);
-        currentNote = {
-            _id : note.props.notem._id,
-            title : note.props.notem.title,
-            content: note.props.notem.content
-        };
-
-        this.setState({selectedNote: currentNote})
+        this.setState({selectedNote: note})
     }
 
     render() {

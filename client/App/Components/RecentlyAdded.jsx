@@ -8,7 +8,7 @@ export default class RecentlyAdded extends TrackerReact(React.Component) {
     constructor() {
         super();
         this.state = {
-            datam: Notes.find({ownerid: Meteor.userId()})
+            datam: Notes.find({owner_id: Meteor.userId()})
         }
     }
 
@@ -20,7 +20,7 @@ export default class RecentlyAdded extends TrackerReact(React.Component) {
 
         var notes = this.state.datam.map(note => {
             return <SingleNote notem={note} key={note._id} s
-                               electedNote={this.props.selectedNote}
+                               SelectedNote={this.props.selectedNote}
                                showNote={this.showNote.bind(this)}
             />;
         });
