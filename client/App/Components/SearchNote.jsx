@@ -1,15 +1,13 @@
 import React from 'react';
-import TrackerReact from 'meteor/ultimatejs:tracker-react';
 
 import SingleNote from './SingleNote.jsx';
 
-export default class SearchNote extends TrackerReact(React.Component) {
+export default class SearchNote extends React.Component {
 
     constructor() {
         super();
         this.state = {
-            searchText: '',
-            datam: []
+            searchText: ''
         }
     }
 
@@ -17,28 +15,22 @@ export default class SearchNote extends TrackerReact(React.Component) {
         this.setState({
             searchText: event.target.value
         });
-
-        this.loadNotesFromDB();
     }
 
-    loadNotesFromDB() {
-        var searchText = this.state.searchText;
-
-        if (searchText) {
-            var results = Notes.find({
-                    owner_id: Meteor.userId(),
-                    title: {$regex: searchText + "*", $options: "i"}
-                }
-            );
-
-            this.setState({
-                datam: results
-            });
+    loadData() {
+        if (this.state.searchText != '') { // if text is empty return []
+            return Notes.find({
+                owner_id: Meteor.userId(),
+                title: {$regex: this.state.searchText, $options: "i"}
+            }).fetch();
+        } else {
+            return [];
         }
     }
 
     render() {
-        var notes = this.state.datam.map(note => {
+
+        var notes = this.loadData().map(note => {
             return <SingleNote notem={note} key={note._id}/>;
         });
 

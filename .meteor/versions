@@ -65,8 +65,8 @@ meteortoys:blueprint@2.1.0
 meteortoys:email@2.1.0
 meteortoys:hotreload@2.1.0
 meteortoys:listen@2.1.0
-meteortoys:method@3.0.2
-meteortoys:pub@3.0.2
+meteortoys:method@3.0.4
+meteortoys:pub@3.0.4
 meteortoys:result@2.1.0
 meteortoys:shell@2.1.0
 meteortoys:status@2.1.0

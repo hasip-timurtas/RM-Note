@@ -10,26 +10,43 @@ export default class App extends React.Component {
     constructor() {
         super();
         this.state = {
-            selectedNote: []
+            selectedNote: [],
+            selectedNote1: {noteId: '', title: '', content: ''}
         }
     }
 
-    showNote(note)
-    {
-        this.setState({selectedNote: note})
+    showNote(note) {
+        this.setState({selectedNote: note});
+        this.setState({
+            selectedNote1: {
+                noteId: note._id,
+                title: note.title,
+                content: note.content
+            }
+        });
+    }
+
+    checkForNote() {
+        // if there is a selected note then showNote will appear.
+        if (this.state.selectedNote._id) {
+            return <ShowNote selectedNotem={this.state.selectedNote}
+                             selectedNote1={this.state.selectedNote1}
+                             titleChange={this.titleChange.bind(this)}
+                             contentChange={this.contentChange.bind(this)}/>;
+        }
     }
 
     render() {
         return (
             <div className="row">
                 <div className="col-md-8">
-                    <SearchNote selectedNote={this.state.selectedNote}/>
+                    <SearchNote selectedNotem={this.state.selectedNote}/>
                     <hr/>
-                    <ShowNote selectedNote={this.state.selectedNote} />
+                    {this.checkForNote()}
                 </div>
                 <div className="col-md-4">
-                    <RecentlyAdded selectedNote={this.state.selectedNote}
-                                   showNote={this.showNote.bind(this)}
+                    <RecentlyAdded selectedNotem={this.state.selectedNote}
+                                   showNote={this.showNote.bind(this) }
                     />
                 </div>
 
@@ -41,5 +58,28 @@ export default class App extends React.Component {
             </div>
 
         )
+    }
+
+
+    titleChange(event) {
+        this.setState({
+            selectedNote1: {
+                noteId: this.state.selectedNote1.noteId,
+                title: event.target.value,
+                content: this.state.selectedNote1.content
+            }
+        });
+
+        console.log(this.state);
+    }
+
+    contentChange(event) {
+        this.setState({
+            selectedNote1: {
+                noteId: this.state.selectedNote1.noteId,
+                title: this.state.selectedNote1.title,
+                content: event.target.value
+            }
+        });
     }
 }

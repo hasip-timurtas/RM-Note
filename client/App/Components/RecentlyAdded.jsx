@@ -17,10 +17,9 @@ export default class RecentlyAdded extends TrackerReact(React.Component) {
     }
 
     render() {
-
         var notes = this.state.datam.map(note => {
-            return <SingleNote notem={note} key={note._id} s
-                               SelectedNote={this.props.selectedNote}
+            return <SingleNote notem={note} key={note._id}
+                               SelectedNotem={this.props.selectedNote}
                                showNote={this.showNote.bind(this)}
             />;
         });

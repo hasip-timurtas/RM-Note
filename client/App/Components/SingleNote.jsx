@@ -2,7 +2,7 @@ import React from 'react';
 
 export default class SingleNote extends React.Component {
     showNote() {
-        this.props.showNote(this);
+        this.props.showNote(this.props.notem);
     }
 
     render() {
