@@ -1,20 +1,12 @@
 import  React, {Component} from 'react';
 
-export  default class ResolutionsForm extends Component {
+export  default class NewNote extends Component {
     addNote(event) {
         event.preventDefault();
         var title = this.refs.title.value.trim();
         var content = this.refs.content.value.trim();
-
-        var newNote = {
-            title: title,
-            content: content,
-            owner_id: Meteor.userId(),
-            owner: Meteor.user().services.google.email,
-            entry_date: new Date()
-        };
         
-        Notes.insert(newNote);
+        Meteor.call("newNote", title, content);
 
         this.refs.title.value = "";
         this.refs.content.value = "";

@@ -10,23 +10,14 @@ export default class ShowNote extends React.Component {
     }
 
     deleteNote() {
-        var noteId = this.props.selectedNotem._id;
-        Notes.remove(noteId);
+        Meteor.call("deleteNote", this.props.selectedNotem._id);
     }
 
     updateNote() {
-        console.log(this.props.selectedNote1);
-        Notes.update({_id: this.props.selectedNote1.noteId},
-            {
-                $set: {
-                    title: this.props.selectedNote1.title,
-                    content: this.props.selectedNote1.content
-                }
-            });
+        Meteor.call("updateNote", this.props.selectedNote1);
     }
 
     render() {
-        //console.log(this.props.selectedNotem);
         return (
             <div className="show-note">
 

@@ -5,6 +5,7 @@ import SearchNote from './Components/SearchNote.jsx';
 import ShowNote from './Components/ShowNote.jsx';
 
 Notes = new Meteor.Collection("notes");
+Meteor.subscribe("getNotes");
 
 export default class App extends React.Component {
     constructor() {
