@@ -5,19 +5,16 @@ import SingleNote from './SingleNote.jsx';
 
 export default class RecentlyAdded extends TrackerReact(React.Component) {
 
-    constructor() {
-        super();
-        this.state = {
-            datam: Notes.find({owner_id: Meteor.userId()})
-        }
-    }
-
     showNote(note) {
         this.props.showNote(note);
     }
 
+    loadData(){
+        return Notes.find({owner_id: Meteor.userId()});
+    }
+
     render() {
-        var notes = this.state.datam.map(note => {
+        var notes = this.loadData().map(note => {
             return <SingleNote notem={note} key={note._id}
                                SelectedNotem={this.props.selectedNote}
                                showNote={this.showNote.bind(this)}
