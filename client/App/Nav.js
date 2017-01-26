@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import AccountsUI from './AccountsUI.jsx';
+import AccountsUI from './AccountsUI';
 
 export default class Nav extends Component{
     render(){

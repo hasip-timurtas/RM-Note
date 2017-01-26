@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SingleNote from './SingleNote.jsx';
+import SingleNote from './SingleNote';
 
 export default class SearchNote extends React.Component {
 

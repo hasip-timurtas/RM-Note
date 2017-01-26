@@ -5,7 +5,7 @@ export  default class NewNote extends Component {
         event.preventDefault();
         var title = this.refs.title.value.trim();
         var content = this.refs.content.value.trim();
-        
+
         Meteor.call("newNote", title, content);
 
         this.refs.title.value = "";

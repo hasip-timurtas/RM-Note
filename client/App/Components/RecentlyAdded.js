@@ -1,7 +1,6 @@
 import React from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
-
-import SingleNote from './SingleNote.jsx';
+import SingleNote from './SingleNote';
 
 export default class RecentlyAdded extends TrackerReact(React.Component) {
 

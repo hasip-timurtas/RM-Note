@@ -3,7 +3,7 @@ Notes = new Meteor.Collection("notes");
 Meteor.startup(() => {
     // code to run on server at startup
 });
-
+  
 Meteor.methods({
     newNote: function (title, content) {
         if (!Meteor.userId()) {

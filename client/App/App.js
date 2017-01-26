@@ -1,8 +1,7 @@
 import React from 'react';
-
-import RecentlyAdded from './Components/RecentlyAdded.jsx';
-import SearchNote from './Components/SearchNote.jsx';
-import ShowNote from './Components/ShowNote.jsx';
+import RecentlyAdded from './Components/RecentlyAdded';
+import SearchNote from './Components/SearchNote';
+import ShowNote from './Components/ShowNote';
 
 Notes = new Meteor.Collection("notes");
 Meteor.subscribe("getNotes");
